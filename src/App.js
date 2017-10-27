@@ -27,7 +27,6 @@ function isSearched(searchTerm) {
     }
 }
 
-
 class App extends Component {
 
     constructor(props) {
@@ -75,36 +74,19 @@ class App extends Component {
     }
 }
 
-class Search extends Component {
-    render() {
-        const {
-            value,
-            onChange,
-            children
-        } = this.props;
+const Search = ({ value, onChange, children }) => {
 
-        return (
-            <form>
-                {children} <input
-                    type="text"
-                    value={value}
-                    onChange={onChange}
-                />
-            </form>
-        );
-    }
+    return (
+        <form>
+            {children} <input type="text" value={value} onChange={onChange}/>
+        </form>
+    );
+
 }
 
-class Table extends Component {
-    render() {
-        const {
-            list,
-            pattern,
-            onDismiss
-        } = this.props;
-
-        return (
-            <div>
+const Table = ({ list, pattern, onDismiss }) => {
+    return (
+        <div>
             {list.filter(isSearched(pattern)).map(item =>
                 <div key={item.objectID}>
                     <span>
@@ -120,29 +102,20 @@ class Table extends Component {
                     </span>
                 </div>
             )}
-            </div>
-        );
-    }
+        </div>
+    );
 }
 
-class Button extends Component {
-    render() {
-        const {
-            onClick,
-            className = '',
-            children
-        } = this.props;
-
-        return (
-            <button
-                onClick={onClick}
-                className={className}
-                type="button"
-            >
-                {children}
-            </button>
-        );
-    }
+const Button = ({ onClick, className, children}) => {
+    return (
+        <button
+            onClick={onClick}
+            className={className}
+            type="button"
+        >
+            {children}
+        </button>
+    );
 }
 
 export default App;
